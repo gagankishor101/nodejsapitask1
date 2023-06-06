@@ -3,15 +3,25 @@ const Product = require('../models/productModel');
 const productController = {
   getAllProducts: (req, res) => {
     Product.getAllProducts((error, results) => {
+      console.log(error)
       if (error) {
         console.error('Error retrieving products:', error);
         // res.sendStatus(500);
-        res.status(500).send('Error retrieving product:',error);
+        const result = {
+          status: 0,
+          code: 500,
+          message: "Something went wrong!",
+        }
+        return res.status(500).send(result);
 
-        return;
       }
-
-      res.json(results);
+      const result = {
+        status: 1,
+        code: 200,
+        message: "Products list fetch successfully!",
+        result: results
+      }
+      res.json(result);
     });
   },
 
