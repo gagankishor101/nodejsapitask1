@@ -1,11 +1,14 @@
-import React from 'react'
+// sourceModel.js
+const generateData = (status,code,message,error, results) => {
+  const data = {
+    status:code?code:0 ,
+    code:status ,
+    message:message?message:"Something went wrong!",
+    results: results,
+    error: error
+  };
 
-const result = (results) => {
-  return (
-   {
-    name:"gagan"
-   }
-  )
-}
+  return data;
+};
 
-export default result
+module.exports = generateData;
